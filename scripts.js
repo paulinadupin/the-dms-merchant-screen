@@ -33,8 +33,8 @@ function initializeGoogleSheetsUrls(sheetId) {
 let shopData = {}; // Will be populated from Google Sheets
 let storeItems = {}; // Will be populated from Google Sheets
 let siteConfig = {
-    site_title: "D&D Market",
-    site_subtitle: "Website for D&D player to shop in game !"
+    site_title: "Default Market",
+    site_subtitle: "Website for D&D player to shop in game ! "
 };
 
 // Parse site configuration from Google Sheets
@@ -181,16 +181,133 @@ async function loadStoreItems() {
 // Backup store configuration
 function loadBackupStores() {
     shopData = {
-        ERROR: {
-            title: "Something went wrong...",
-            description: "Make sure your Google sheet is set to 'Anyone can view with the link'"
-        }
-    };
+        weapons: {
+        title: "Weapon Shop",
+        description: "Fine blades and ranged weapons for the discerning adventurer"
+        },
+        armory: {
+        title: "Armory",
+        description: "Protective gear and shields to keep you safe in battle"
+        },
+        magic: {
+            title: "Magic Shop",
+            description: "Mystical artifacts and enchanted items of great power"
+        },
+         apothecary: {
+        title: "Apothecary",
+        description: "Healing potions and remedies for what ails you"
+    },
+        };
 }
 
 // Backup items (fallback data)
 function loadBackupItems() {
     storeItems = {
+        weapons: [
+        {
+            name: "Longsword +1",
+            price: { gold: 15, silver: 0, copper: 0 },
+            rarity: "uncommon",
+            preview: "A finely crafted blade that gleams with magical enhancement.",
+            description: "This masterwork longsword has been enchanted by skilled artificers. The blade never dulls and cuts through armor with supernatural ease. Ancient runes along the fuller glow faintly blue when drawn in anger.",
+            stats: "Damage: 1d8 + 1 slashing<br>Properties: Versatile (1d10), Magical<br>Weight: 3 lbs"
+        },
+        {
+            name: "Shortbow",
+            price: { gold: 2, silver: 5, copper: 0 },
+            rarity: "common",
+            preview: "A simple yet reliable ranged weapon.",
+            description: "This well-crafted shortbow is made from seasoned yew wood. Perfect for hunters and scouts, it offers excellent accuracy at short to medium range.",
+            stats: "Damage: 1d6 piercing<br>Properties: Ammunition (range 80/320), Two-handed<br>Weight: 2 lbs"
+        },
+        {
+            name: "Battleaxe",
+            price: { gold: 1, silver: 0, copper: 0 },
+            rarity: "common",
+            preview: "A heavy axe designed for combat.",
+            description: "This sturdy battleaxe features a sharp steel head mounted on a hickory handle. Its weight and balance make it devastating in the hands of a skilled warrior.",
+            stats: "Damage: 1d8 slashing<br>Properties: Versatile (1d10)<br>Weight: 4 lbs"
+        }
+    ],
+    armory: [
+        {
+            name: "Chainmail Armor",
+            price: { gold: 7, silver: 5, copper: 0 },
+            rarity: "common",
+            preview: "Interlocking metal rings provide flexible protection.",
+            description: "This suit of chainmail consists of thousands of interlocking metal rings. It provides excellent protection while allowing reasonable freedom of movement.",
+            stats: "AC: 16<br>Stealth: Disadvantage<br>Weight: 55 lbs<br>Strength Requirement: 13"
+        },
+        {
+            name: "Shield +1",
+            price: { gold: 12, silver: 0, copper: 0 },
+            rarity: "uncommon",
+            preview: "A reinforced shield with magical enhancements.",
+            description: "This steel shield has been magically reinforced with protective wards. The metal gleams with an inner light that deflects both physical and magical attacks.",
+            stats: "AC Bonus: +3 (+1 enhancement)<br>Weight: 6 lbs<br>Properties: Magical"
+        },
+        {
+            name: "Leather Armor",
+            price: { gold: 1, silver: 0, copper: 0 },
+            rarity: "common",
+            preview: "Supple leather crafted into protective gear.",
+            description: "This armor consists of leather that has been stiffened by being boiled in oil. It offers basic protection without restricting movement.",
+            stats: "AC: 11 + Dex modifier<br>Weight: 10 lbs<br>No stealth penalty"
+        }
+    ],
+    magic: [
+        {
+            name: "Ring of Protection",
+            price: { gold: 40, silver: 0, copper: 0 },
+            rarity: "rare",
+            preview: "A silver band inscribed with protective wards.",
+            description: "This simple silver ring is inscribed with microscopic protective wards in multiple ancient languages. When worn, it creates an invisible barrier that deflects both physical and magical attacks.",
+            stats: "AC Bonus: +1<br>Saving Throw Bonus: +1<br>Attunement: Required<br>Slot: Ring"
+        },
+        {
+            name: "Staff of Fireballs",
+            price: { gold: 80, silver: 0, copper: 0 },
+            rarity: "epic",
+            preview: "An ornate staff crackling with barely contained flame.",
+            description: "This magnificent staff is carved from phoenix heartwood and topped with a ruby that burns with eternal flame. The wielder can unleash devastating fireballs that explode in brilliant bursts of magical fire.",
+            stats: "Charges: 7 (regains 1d6+1 at dawn)<br>Spells: Fireball (3rd level, 3 charges)<br>Save DC: 15<br>Attunement: Required (Spellcaster)"
+        },
+        {
+            name: "Wand of Magic Missiles",
+            price: { gold: 25, silver: 0, copper: 0 },
+            rarity: "uncommon",
+            preview: "A slender wand that hums with arcane energy.",
+            description: "This slim wand is crafted from polished yew and capped with a small crystal that pulses with blue light. When activated, it launches unerring darts of magical force.",
+            stats: "Charges: 7 (regains 1d6+1 at dawn)<br>Spell: Magic Missile (1st level, 1 charge)<br>Range: 120 feet"
+        }
+    
+    ],
+    apothecary: [
+        {
+            name: "Healing Potion",
+            price: { gold: 5, silver: 0, copper: 0 },
+            rarity: "common",
+            preview: "A crimson liquid that sparkles with restorative magic.",
+            description: "This ruby-red potion swirls with healing magic. When consumed, it instantly mends wounds and restores vitality. The liquid tastes of cherries and sunshine.",
+            stats: "Effect: Restore 2d4 + 2 hit points<br>Duration: Instantaneous<br>Rarity: Common consumable"
+        },
+        {
+            name: "Greater Healing Potion",
+            price: { gold: 15, silver: 0, copper: 0 },
+            rarity: "uncommon",
+            preview: "A more potent healing draught with golden flecks.",
+            description: "This enhanced healing potion contains rare herbs and magical components. Golden flecks swirl within the crimson liquid, indicating its superior restorative properties.",
+            stats: "Effect: Restore 4d4 + 4 hit points<br>Duration: Instantaneous<br>Rarity: Uncommon consumable"
+        },
+        {
+            name: "Antitoxin",
+            price: { gold: 5, silver: 0, copper: 0 },
+            rarity: "common",
+            preview: "A clear liquid that neutralizes poison.",
+            description: "This clear, odorless liquid can neutralize most common poisons. Made from bezoar stones and purified water, it's an essential item for any adventurer.",
+            stats: "Effect: Advantage on saves vs poison for 1 hour<br>Duration: 1 hour<br>Type: Medicine"
+        }
+    ],
       
     };
 }
@@ -735,6 +852,25 @@ function setupPlayerCurrency() {
     loadConfiguration();
 }
 
+// Currency setup functions
+function setupPlayerCurrencyTest() {
+    
+    // Get currency values
+    const gold = parseInt(document.getElementById('input-gold').value) || 0;
+    const silver = parseInt(document.getElementById('input-silver').value) || 0;
+    const copper = parseInt(document.getElementById('input-copper').value) || 0;
+    
+    playerCurrency = { gold, silver, copper };
+    startingCurrency = { gold, silver, copper };
+    updateCurrencyDisplay();
+    
+    document.getElementById('currency-setup-modal-test').style.display = 'none';
+    
+    // Load backup data
+    loadBackupStores()
+}
+
+
 // Function to load all configuration data
 async function loadConfiguration() {
     await loadSiteConfig();
@@ -784,6 +920,12 @@ function selectDM() {
     document.getElementById('dm-instructions').style.display = 'block';
     document.getElementById('player-btn').style.display = 'none';
     document.getElementById('dm-btn').style.display = 'none';
+    document.getElementById('testing-btn').style.display = 'none';
+}
+
+function selectTesting(){
+     document.getElementById('role-selection-modal').style.display = 'none';
+    document.getElementById('currency-setup-modal-test').style.display = 'block';
 }
 
 function copyTemplate() {
@@ -805,10 +947,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('dm-btn').onclick = selectDM;
     document.getElementById('copy-template-btn').onclick = copyTemplate;
     document.getElementById('dm-continue-btn').onclick = dmContinue;
+        document.getElementById('testing-btn').onclick = selectTesting;
     
     // Existing event listeners...
     document.getElementById('start-shopping').onclick = setupPlayerCurrency;
-    
+    document.getElementById('start-shopping-test').onclick = setupPlayerCurrencyTest;
+
      // Load site configuration 
     await loadSiteConfig();
 

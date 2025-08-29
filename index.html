@@ -89,6 +89,16 @@
             <button class="buy-btn" id="player-btn">I'm a Player</button>
             <button class="buy-btn" id="dm-btn">I'm a DM</button>
         </div>
+        <button class="buy-btn" id="testing-btn"
+        style="
+        background: rgba(203, 195, 158, 0);
+        color:rgba(255, 255, 255, 0.276);
+        font-size: small;
+        text-shadow: none;
+        box-shadow:none;
+        margin-top: 0;
+        padding: 2%;"
+        >I want to test it first !</button>
         
         <div id="dm-instructions" style="display: none;">
             <div class="modal-description">
@@ -97,7 +107,7 @@
             <ol class="instruction-list">
                 <li>Copy this Google Sheets template</li>
                 <li>Set it to "Anyone with the link can view"</li>
-                <li>Share the Google Sheets URL with your players</li>
+                <li>Share the Google Sheet URL with your players</li>
                 <h6>You can reuse and modify the same Google Sheet for later use!</h6>
             </ol>
             <button class="buy-btn" id="copy-template-btn">Copy Template</button>
@@ -151,6 +161,42 @@
             <button class="buy-btn" id="start-shopping">Start Shopping</button>
         </div>
     </div>
+
+
+
+<div id="currency-setup-modal-test" class="modal" style="display: none;">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome, Adventurer!</h2>
+            </div>
+            
+        
+            <div class="modal-description">
+                Now tell us how much coin you're carrying:
+            </div>
+            
+            <div class="currency-input-section">
+                <div class="currency-input-group">
+                    <label for="input-gold">Gold Pieces:</label>
+                    <input type="number" id="input-gold" min="0" value="0" class="currency-input">
+                </div>
+                <div class="currency-input-group">
+                    <label for="input-silver">Silver Pieces:</label>
+                    <input type="number" id="input-silver" min="0" value="0" class="currency-input">
+                </div>
+                <div class="currency-input-group">
+                    <label for="input-copper">Copper Pieces:</label>
+                    <input type="number" id="input-copper" min="0" value="0" class="currency-input">
+                </div>
+            </div>
+            <div class="currency-note">
+                <small>Remember: 1 Gold = 10 Silver = 100 Copper</small>
+            </div>
+            
+            <button class="buy-btn" id="start-shopping-test">Start Shopping</button>
+        </div>
+    </div>    
     <!-- Modal -->
     <div id="item-modal" class="modal">
         <div class="modal-content">
