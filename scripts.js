@@ -727,7 +727,9 @@ function showShoppingSummary() {
                 </div>
             </div>
             
-            <button class="buy-btn" onclick="resetShopping()">New Shopping Session</button>
+            <button class="buy-btn" onclick="resetShopping()">Resert Shopping Session</button>
+            <button class="buy-btn" onclick="document.location.reload()">Quit</button>
+        </div>
         </div>
     `;
     
@@ -904,6 +906,7 @@ function selectDM() {
     document.getElementById('player-btn').style.display = 'none';
     document.getElementById('dm-btn').style.display = 'none';
     document.getElementById('testing-btn').style.display = 'none';
+    document.getElementById('question-modal').style.display='none';
 }
 
 function selectTesting(){

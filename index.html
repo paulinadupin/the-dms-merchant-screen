@@ -81,7 +81,7 @@
             <h2 class="modal-title">Welcome to the Marketplace</h2>
         </div>
         
-        <div class="modal-description">
+        <div class="modal-description" id="question-modal">
             Are you a player or a Dungeon Master?
         </div>
         
@@ -105,13 +105,14 @@
                 <strong>DM Setup Instructions:</strong>
             </div>
             <ol class="instruction-list">
-                <li>Copy this Google Sheets template</li>
+                <li>Copy this Google Sheets template by clicking the button below</li>
                 <li>Set it to "Anyone with the link can view"</li>
-                <li>Share the Google Sheet URL with your players</li>
+                <li>Follow the instructions in the Google Sheet to set up your Market</li>
+                <li>Share the Google Sheet URL with your players when you are ready</li>
                 <h6>You can reuse and modify the same Google Sheet for later use!</h6>
             </ol>
             <button class="buy-btn" id="copy-template-btn">Copy Template</button>
-            <button class="buy-btn" id="dm-continue-btn">Continue to Setup</button>
+            <button class="buy-btn" id="dm-continue-btn">Go Back to Player Mode</button>
         </div>
     </div>
 </div>
@@ -126,7 +127,7 @@
             
             <!-- Google Sheets URL Input -->
             <div class="modal-description" id="modal-description">
-                First, please provide your Google Sheets URL:
+                First, please enter the Google Sheets URL provided by the DM :
             </div>
             <div class="currency-input-group" id="url-input-group">
                 <label for="sheets-url">Google Sheets URL:</label>
