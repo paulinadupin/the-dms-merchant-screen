@@ -10,6 +10,9 @@ let purchasedItems = [];
 let soldItems = [];
 let startingCurrency = { gold: 0, silver: 0, copper: 0 };
 
+let defaultView = false;
+let loaded = true;
+
 
 // Function to extract Sheet ID from Google Sheets URL
 function extractSheetId(url) {
@@ -34,7 +37,7 @@ let shopData = {}; // Will be populated from Google Sheets
 let storeItems = {}; // Will be populated from Google Sheets
 let siteConfig = {
     site_title: "Default Market",
-    site_subtitle: "Website for D&D player to shop in game ! "
+    site_subtitle: "Website for D&D player to shop in game !"
 };
 
 // Parse site configuration from Google Sheets
@@ -58,12 +61,16 @@ function parseSiteConfig(jsonData) {
 
 // Load site configuration from Google Sheets
 async function loadSiteConfig() {
+    if (!window.STORES_SHEET_URL) return;   
     try {
         const response = await fetch(SITE_CONFIG_SHEET_URL);
         const text = await response.text();
         const jsonData = JSON.parse(text.substr(47).slice(0, -2));
-        const loadedConfig = parseSiteConfig(jsonData);
         
+        console.log('JSON parsed successfully:', jsonData); // This works
+        
+        const loadedConfig = parseSiteConfig(jsonData);
+        console.log('Config parsed:', loadedConfig);
         // Update siteConfig with loaded values
         if (loadedConfig.site_title) siteConfig.site_title = loadedConfig.site_title;
         if (loadedConfig.site_subtitle) siteConfig.site_subtitle = loadedConfig.site_subtitle;
@@ -73,6 +80,9 @@ async function loadSiteConfig() {
     } catch (error) {
         console.error('Failed to load site config:', error);
         updateSiteHeader(); // Use defaults
+        showNotification('IMPORTANT: Set Google Sheet to "Anyone can view with Link"', 'error');
+        loaded = false;
+
     }
 }
 
@@ -152,6 +162,7 @@ function parseSheetData(jsonData) {
 
 // Load store configuration from Google Sheets
 async function loadStoreConfig() {
+    if (!window.STORES_SHEET_URL) return;
     try {
         const response = await fetch(STORES_SHEET_URL);
         const text = await response.text();
@@ -161,22 +172,31 @@ async function loadStoreConfig() {
     } catch (error) {
         console.error('Failed to load store config:', error);
         loadBackupStores();
+        loaded = false;
     }
 }
 
 // Load items from Google Sheets
 async function loadStoreItems() {
+    if (!window.STORES_SHEET_URL) return;
     try {
         const response = await fetch(ITEMS_SHEET_URL);
         const text = await response.text();
         const jsonData = JSON.parse(text.substr(47).slice(0, -2));
         storeItems = parseSheetData(jsonData);
         console.log('Items loaded from Google Sheets');
+        if (loaded == true){
+        showNotification('Google Sheets URL configured successfully!', 'success');
+
+}
     } catch (error) {
         console.error('Failed to load from Google Sheets:', error);
         loadBackupItems();
+        loaded = false;
     }
 }
+
+
 
 // Backup store configuration
 function loadBackupStores() {
@@ -824,7 +844,7 @@ function setupPlayerCurrency() {
     // Get and validate Google Sheets URL first
     const sheetsUrl = document.getElementById('sheets-url').value.trim();
     
-    if (sheetsUrl) {
+    if (sheetsUrl && defaultView==false) {
         const sheetId = extractSheetId(sheetsUrl);
         
         if (!sheetId) {
@@ -834,9 +854,11 @@ function setupPlayerCurrency() {
         
         // Initialize with user-provided Sheet ID
         initializeGoogleSheetsUrls(sheetId);
-        showNotification('Google Sheets URL configured successfully!', 'success');
+
     } else {
-        showNotification('No Google Sheets URL provided. Using backup data.', 'error');
+        if (defaultView==false){
+        showNotification('Please provide a valid URL', 'error');
+        }
     }
     
     // Get currency values
@@ -853,8 +875,6 @@ function setupPlayerCurrency() {
     // Load data with new URLs
     loadConfiguration();
 }
-
-
 
 // Function to load all configuration data
 async function loadConfiguration() {
@@ -910,10 +930,14 @@ function selectDM() {
 }
 
 function selectTesting(){
-     document.getElementById('role-selection-modal').style.display = 'none';
+    document.getElementById('role-selection-modal').style.display = 'none';
     document.getElementById('currency-setup-modal').style.display = 'block';
     document.getElementById('url-input-group').style.display='none';
     document.getElementById('modal-description').style.display='none';
+    updateSiteHeader(); // Use defaults
+    loadBackupItems();
+    loadBackupStores();
+    defaultView = true;
 }
 
 function copyTemplate() {

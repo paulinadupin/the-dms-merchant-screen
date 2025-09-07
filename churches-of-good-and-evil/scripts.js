@@ -103,18 +103,18 @@ function parseSheetData(jsonData) {
     const rows = jsonData.table.rows;
     
     rows.forEach(row => {
-        if (!row.c || !row.c[0]) return;
+        if (!row.c || !row.c[3]) return;
         
-        const shop = row.c[0]?.v;
-        const name = row.c[2]?.v;
-        const gold = row.c[3]?.v || 0;
-        const silver = row.c[4]?.v || 0;
-        const copper = row.c[5]?.v || 0;
-        const rarity = row.c[6]?.v || 'common';
-        const preview = row.c[7]?.v || '';
-        const description = row.c[8]?.v || '';
-        const stats = row.c[9]?.v || '';
-        const enabled = row.c[1]?.v;
+        const shop = row.c[1]?.v;
+        const name = row.c[3]?.v;
+        const gold = row.c[4]?.v || 0;
+        const silver = row.c[5]?.v || 0;
+        const copper = row.c[6]?.v || 0;
+        const rarity = row.c[7]?.v || 'common';
+        const preview = row.c[8]?.v || '';
+        const description = row.c[9]?.v || '';
+        const stats = row.c[10]?.v || '';
+        const enabled = row.c[2]?.v;
         
         if (!shop || !name) return;
         
