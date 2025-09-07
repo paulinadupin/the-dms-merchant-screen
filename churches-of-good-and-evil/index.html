@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="The DM's Merchant Screen lets tabletop players shop items their DM adds, track gold, manage sales, and view item details in one place.">
+    <meta name="keywords" content="D&D, tabletop, RPG, marketplace, inventory, fantasy shop, roleplay, gold tracker">
+    <meta name="author" content="Paulina">
+
+    <!-- Open Graph (for social sharing) -->
+    <meta property="og:title" content="The DM's Merchant Screen">
+    <meta property="og:description" content="Shop items, track gold, and manage your adventurer's gear directly from your DM's list.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content=""> 
+    <meta property="og:url" content="">
+
+    <!-- Title -->
+    <title>The DM's Merchant Screen</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="container">
+         <header>
+            <h1>Loading...</h1>
+             <p class="subtitle">Please wait...</p>
+        </header>
+          
+
+        <div class="shop-header">
+            <nav class="shop-navigation">   
+            </nav>
+            <h2 id="shop-title"></h2>
+            <p id="shop-description"></p>
+        </div>
+
+        <div class="info-btn">
+            <div class="action-buttons">
+                    <button class="action-btn" id="sell-btn">Sell Item</button>
+                    <button class="action-btn" id="finish-shopping-btn">Finish Shopping</button>
+                </div>
+
+            <div class="currency-counter">
+                <div class="currency-item">
+                    <div class="currency-type">GP</div>
+                    <div class="currency-value" id="gold-amount">0</div>
+                </div>
+                <div class="currency-item">
+                    <div class="currency-type">SP</div>
+                    <div class="currency-value" id="silver-amount">0</div>
+                </div>
+                <div class="currency-item">
+                    <div class="currency-type">CP</div>
+                    <div class="currency-value" id="copper-amount">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="store-grid" id="store-grid">
+            <!-- Items will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Currency Setup Modal -->
+    <div id="currency-setup-modal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"> Welcome, Adventurer!</h2>
+            </div>
+          
+            <div class="modal-description">
+                Before you begin shopping, please tell us how much coin you're carrying:
+            </div>
+          <button class="buy-btn" id="start-shopping">Start Shopping</button>
+          
+            <div class="currency-input-section">
+                <div class="currency-input-group">
+                    <label for="input-gold">Gold Pieces:</label>
+                    <input type="number" id="input-gold" min="0" value="0" class="currency-input">
+                </div>
+                <div class="currency-input-group">
+                    <label for="input-silver">Silver Pieces:</label>
+                    <input type="number" id="input-silver" min="0" value="0" class="currency-input">
+                </div>
+                <div class="currency-input-group">
+                    <label for="input-copper">Copper Pieces:</label>
+                    <input type="number" id="input-copper" min="0" value="0" class="currency-input">
+                </div>
+            </div>
+            <div class="currency-note">
+                <small>💡 Remember: 1 Gold = 10 Silver = 100 Copper</small>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="item-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <div class="modal-price" id="modal-price"></div>
+                <div class="item-rarity" id="modal-rarity"></div>
+            </div>
+            <div class="modal-description" id="modal-description"></div>
+            <div class="stats-section" id="modal-stats"></div>
+            <div class="payment-section" id="payment-section">
+                <div class="price-breakdown" id="price-breakdown"></div>
+                <div class="change-calculator" id="change-calculator" style="display: none;">
+                    <div class="change-title">Your Change:</div>
+                    <div class="change-display" id="change-display"></div>
+                </div>
+            </div>
+            <button class="buy-btn" id="buy-button">Purchase Item</button>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <!-- JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>
