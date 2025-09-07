@@ -1,9 +1,9 @@
-﻿# the-dms-merchant-screen
-# The DM's Merchant Screen
+﻿# the-dms-marketplace
+# The DM's Marketplace
 
 **A web-based D&D marketplace and inventory manager.**  
 
-The DM's Merchant Screen allows tabletop RPG players to **shop for items added by their Dungeon Master**, track their gold, record sales, and view detailed information about all purchased items. The website is designed to be simple, fast, and interactive, making in-person tabletop sessions smoother and more organized.  
+The DM's Marketplace allows tabletop RPG players to **shop for items added by their Dungeon Master**, track their gold, record sales, and view detailed information about all purchased items. The website is designed to be simple, fast, and interactive, making in-person tabletop sessions smoother and more organized.  
 
 ---
 
@@ -52,3 +52,4 @@ The DM's Merchant Screen allows tabletop RPG players to **shop for items added b
 ## Getting Started
 
 - Just go to the URL and follow the instructions on screen
+
