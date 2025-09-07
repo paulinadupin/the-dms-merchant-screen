@@ -78,9 +78,9 @@ function parseStoreData(jsonData) {
         if (!row.c || !row.c[0] || !row.c[1]) return;
         
         const shop = row.c[0]?.v;
-        const title = row.c[1]?.v;
-        const description = row.c[2]?.v || '';
-        const enabled = row.c[3]?.v;
+        const title = row.c[2]?.v;
+        const description = row.c[3]?.v || '';
+        const enabled = row.c[1]?.v;
         
         if (!shop || !title) return;
         
@@ -96,15 +96,16 @@ function parseStoreData(jsonData) {
     return stores;
 }
 
+
 // Parse items with enabled filter
 function parseSheetData(jsonData) {
     const items = {};
     const rows = jsonData.table.rows;
     
     rows.forEach(row => {
-        if (!row.c || !row.c[1]) return;
+        if (!row.c || !row.c[0]) return;
         
-        const shop = row.c[1]?.v;
+        const shop = row.c[0]?.v;
         const name = row.c[2]?.v;
         const gold = row.c[3]?.v || 0;
         const silver = row.c[4]?.v || 0;
@@ -113,7 +114,7 @@ function parseSheetData(jsonData) {
         const preview = row.c[7]?.v || '';
         const description = row.c[8]?.v || '';
         const stats = row.c[9]?.v || '';
-        const enabled = row.c[10]?.v;
+        const enabled = row.c[1]?.v;
         
         if (!shop || !name) return;
         
